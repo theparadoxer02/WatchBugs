@@ -1,0 +1,61 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Share Bugs and Codes </title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+    <script src="https://use.fontawesome.com/a7259c8b0d.js"></script>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  </head>
+
+
+<div class="page-header navbar-centre">
+      <h3> Share Code and Bugs </h3>
+</div>
+
+<div>
+
+
+  <div class = "container">
+  <div class="row">
+    <div class='col-sm-10 col-sm-offset-1'>
+
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+        </ul>
+      {% endif %}
+      <form action="." enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {% if filename %}
+              {% if modelcode.name %}
+              File name: <h4>{{ modelcode.name }}</h4>
+              {% else %}
+               UniqueID: <h4>{{ modelcode.hash_value }}</h4>
+            {% endif %}
+            <textarea name="code_url" id="area1">{{modelcode.url}}</textarea><br>
+            <textarea name="code_snippet" id="area2">{{modelcode.code}}</textarea><br>
+            <textarea name="code_bug" id="area3">{{modelcode.bug}}</textarea><br>
+            <textarea name="code_comment" id="area4">{{modelcode.comment}}</textarea><br>
+                <input type="submit" value="edit">
+                <br>
+                 <a href="{% url 'shareapp:home'  %}" >
+                     <button id="create" >create new </button>
+                </a><br>
+             {%else%}
+                File Name:
+                  {{ form|crispy }}
+                  <input type="submit" value="submit"><br>
+             {%endif%}
+        </form>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

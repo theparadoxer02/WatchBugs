@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Share Bugs and Codes </title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/milligram.css' %}">
+  </head>
+
+
+<div class="container">
+  <div class="row">
+    <div class="column">
+      <h3> Share Code and Bugs </h3>
+      <div class="column">
+          {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+            </ul>
+          {% endif %}
+          <form action="." enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                {% if name %}
+                  {% if bugshare.name %}
+                  File name: <h4>{{ bugshare.name }}</h4>
+                  {% else %}
+                   UniqueID: <h4>{{ bugshare.hash_value }}</h4>
+                {% endif %}
+
+                <textarea name="code_snippet">{{code_share.code}}</textarea><br>
+                    <input type="submit" value="edit">
+                    <br>
+                     <a href="{% url 'code_share:app_home'  %}" >
+                         <button id="create" >create new </button>
+                    </a><br>
+                 {%else%}
+                    File Name:
+                    <input type="text" id="file_field" name="file_name"
+                    placeholder="Not neccessary , but dont leave spaces in between the name." value="{{code_share.name}}"><br>
+                    <br>
+                    <textarea name="url" placeholder="You may Enter Url if ,many">{{bugshare.url}} </textarea><br>
+                    <textarea name="code_snippet" placeholder="This is where you can paste your code">{{bugshare.code}}</textarea><br>
+                    <textarea name="bug_Snippet" placeholder="This is where you can share your bug">{{bugshare.bug}}</textarea><br>
+                    <textarea name="comment" placeholder="Enter your comment here">{{bugshare.comment}}</textarea><br>
+                    <input type="submit" value="submit"><br>
+                 {%endif%}
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
