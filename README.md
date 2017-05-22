@@ -50,9 +50,9 @@ where should he look into, what methodology did i used to solve it by describing
 # Some of the preview
 
 ## Pasting code (Create)
-<img src="./docs/screenshot1.png" width="800"/>
-### After the unique Paste Id is generated (View)
-<img src="./docs/screenshot2.png" width="800"/>
+<img src="./docs/screenshot1.png" width="800"></img>
+## After the unique Paste Id is generated (View)
+<img src="./docs/screenshot2.png" width="800"></img>
 ## Edit Phase (UPDATE)
-<img src="./docs/screenshot3.png" width="800"/>
+<img src="./docs/screenshot3.png" width="800"></img>
 
