@@ -28,7 +28,7 @@ where should he look into, what methodology did i used to solve it by describing
 ## To deploy on local system
 
 1. Clone the repository    
-```https://github.com/theparadoxer02/WatchBugs/```    
+```git clone https://github.com/theparadoxer02/WatchBugs/```    
 2. Create a Python Virtual Environment    
     ```virtualenv -p python3 venv for python3```    
     ```virtualenv venv for python 2.7```    
