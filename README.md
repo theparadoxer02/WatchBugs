@@ -27,6 +27,6 @@ where should he look into, what methodology did i used to solve it by describing
 
 # Screenshots
 
-<img src="./docs/screenshot1.jpg" width="400">
-<img src="./docs/screenshot2.jpg" width="400">
-<img src="./docs/screenshot3.jpg" width="400">
+<img src="./docs/screenshot1.png" width="400">
+<img src="./docs/screenshot2.png" width="400">
+<img src="./docs/screenshot3.png" width="400">
