@@ -39,19 +39,19 @@
               {% else %}
                UniqueID: <h4>{{ modelcode.hash_value }}</h4>
             {% endif %}
-            <textarea name="code_url" id="area1">{{modelcode.url}}</textarea><br>
             <textarea name="code_snippet" id="area2">{{modelcode.code}}</textarea><br>
             <textarea name="code_bug" id="area3">{{modelcode.bug}}</textarea><br>
             <textarea name="code_comment" id="area4">{{modelcode.comment}}</textarea><br>
                 <input type="submit" value="edit">
+                <input type="submit" value="submit"><br>
                 <br>
-                 <a href="{% url 'shareapp:home'  %}" >
+                 <a href="{% url 'shareapp:home' %}" >
                      <button id="create" >create new </button>
                 </a><br>
              {%else%}
-                File Name:
-                  {{ form|crispy }}
+                  {{  form|crispy }}
                   <input type="submit" value="submit"><br>
+                </div>
              {%endif%}
         </form>
       </div>

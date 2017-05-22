@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import os
 import sys
-
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bugshare.settings")
     try:
@@ -12,6 +11,8 @@ if __name__ == "__main__":
         # exceptions on Python 2.
         try:
             import django
+            django.setup()
+            from shareapp.models import *
         except ImportError:
             raise ImportError(
                 "Couldn't import Django. Are you sure it's installed and "

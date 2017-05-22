@@ -14,13 +14,36 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '1(+9gt7k)8)y_5(2a&jeh=hhemzfo2xva*^odbi_ng!lf4%3g9'
+#django-rest framework
+from django.conf.urls import url, include
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
+# from django.contrib.auth.models import User
+from rest_framework import routers, serializers, viewsets
 
+# Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'is_staff')
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    #queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+# router.register(r'users', UserViewSet)
+
+#end of django rest-framwork
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1(+9gt7k)8)y_5(2a&jeh=hhemzfo2xva*^odbi_ng!lf4%3g9'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,8 +60,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'shareapp',
+
+     'rest_framework',
+    #  'snippets.apps.SnippetsConfig',
     'crispy_forms',
+    #
+    'shareapp'
 ]
 
 MIDDLEWARE = [
@@ -75,12 +102,6 @@ WSGI_APPLICATION = 'bugshare.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
@@ -120,6 +141,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 
+
+
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
 
@@ -132,3 +155,32 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static", "our_static"),
 ]
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+
+import dj_database_url
+# DATABASES['default'] = dj_database_url.config()
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+ALLOWED_HOSTS = ['*']
+
+DEBUG = True
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
