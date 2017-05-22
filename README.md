@@ -23,10 +23,36 @@ where should he look into, what methodology did i used to solve it by describing
 
 1. **Django REST FRAMEWORK**
 2. **CRUD (CREATE , VIEW , UPDATE , DELETE)**
-3. **Unique Id with each paste**
+3. **Unique ID with each paste**
 
-# Screenshots
+## To deploy on local system
 
-<img src="./docs/screenshot1.png" width="400">
-<img src="./docs/screenshot2.png" width="400">
-<img src="./docs/screenshot3.png" width="400">
+1. Clone the repository    
+```https://github.com/theparadoxer02/WatchBugs/```    
+2. Create a Python Virtual Environment    
+    ```virtualenv -p python3 venv for python3```    
+    ```virtualenv venv for python 2.7```    
+    *(I hope that python 2.7 is default installed on the ubuntu system)*    
+    
+3. Install the requirements file    
+    ```cd WatchBugs```    
+    ```pip install -r requirements.txt``` 
+    
+4.  Migrate and run the server 
+      ```python manage.py makemigrations```    
+      ```python manage migrate```    
+      ```python manage.py runserver```  
+      
+5. Visit the URL    
+```http://127.0.0.1:8000```
+  
+
+# Some of the preview
+
+### Pasting code (Create)
+<img src="./docs/screenshot1.png" width="800">
+### After the unique Paste Id is generated (View)
+<img src="./docs/screenshot2.png" width="800">
+### Edit Phase (UPDATE)
+<img src="./docs/screenshot3.png" width="800">
+
